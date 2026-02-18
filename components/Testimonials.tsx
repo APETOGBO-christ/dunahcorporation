@@ -1,52 +1,52 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { SectionId, Testimonial } from '../types';
 import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
+import { Testimonial } from '../types';
 
 const testimonials: Testimonial[] = [
   {
     id: '1',
     name: 'Marie Koffi',
     role: 'CEO',
-
-    content: 'Dunah Corporation a transformé notre présence digitale. Leur expertise technique combinée à une compréhension profonde de nos besoins a donné des résultats exceptionnels. Notre nouveau site e-commerce a augmenté nos ventes de 300% en 6 mois.',
-    avatar: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=150&q=80'
+    content:
+      'D-Codex a transforme notre presence digitale. Leur expertise technique et leur comprehension de nos besoins ont genere des resultats exceptionnels.',
+    avatar: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=150&q=80',
   },
   {
     id: '2',
     name: 'Jean-Paul Mensah',
     role: 'Directeur Marketing',
-
-    content: 'Une équipe professionnelle et réactive. Ils ont su capter l\'essence de notre marque et la traduire en une application mobile intuitive qui plaît énormément à nos clients. Le suivi post-lancement est également impeccable.',
-    avatar: 'https://images.unsplash.com/photo-1572561300743-2dd367ed0c9a?auto=format&fit=crop&w=150&q=80'
+    content:
+      'Equipe professionnelle et reactive. Ils ont capte l essence de notre marque puis livre une application mobile intuitive, tres bien adoptee par nos clients.',
+    avatar: 'https://images.unsplash.com/photo-1572561300743-2dd367ed0c9a?auto=format&fit=crop&w=150&q=80',
   },
   {
     id: '3',
     name: 'Akosua Adjei',
     role: 'Fondatrice',
-
-    content: 'Travailler avec Dunah était un vrai plaisir. Ils ont non seulement créé un site magnifique mais ont aussi optimisé notre référencement. Nous sommes maintenant en première page Google pour nos mots-clés principaux !',
-    avatar: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=150&q=80'
+    content:
+      'Travail fluide, livrables solides et accompagnement tres clair. Le site est plus performant et notre visibilite organique a fortement progresse.',
+    avatar: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=150&q=80',
   },
   {
     id: '4',
     name: 'Thomas Agbodjan',
     role: 'CTO',
-
-    content: 'Le développement de notre plateforme SaaS était un défi technique majeur. L\'équipe de Dunah a livré une solution robuste, scalable et performante. Leur maîtrise des technologies modernes est impressionnante.',
-    avatar: 'https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&w=150&q=80'
-  }
+    content:
+      'Leur maitrise technique est reelle. Notre plateforme SaaS est stable, scalable et plus simple a maintenir depuis la refonte.',
+    avatar: 'https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&w=150&q=80',
+  },
 ];
 
 const Testimonials: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
-  // Auto-play carousel
   useEffect(() => {
     const timer = setInterval(() => {
-      handleNext();
-    }, 6000);
+      setDirection(1);
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    }, 5600);
 
     return () => clearInterval(timer);
   }, [currentIndex]);
@@ -62,114 +62,94 @@ const Testimonials: React.FC = () => {
   };
 
   const variants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0
+    enter: (customDirection: number) => ({
+      x: customDirection > 0 ? 260 : -260,
+      opacity: 0,
     }),
     center: {
       x: 0,
-      opacity: 1
+      opacity: 1,
     },
-    exit: (direction: number) => ({
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0
-    })
+    exit: (customDirection: number) => ({
+      x: customDirection < 0 ? 260 : -260,
+      opacity: 0,
+    }),
   };
 
   return (
-    <section id={SectionId.PORTFOLIO} className="py-24 bg-brand-dark relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent-600/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-brand-600/10 rounded-full blur-3xl" />
+    <section className="section-shell overflow-hidden">
+      <div className="absolute top-8 left-1/4 w-80 h-80 rounded-full bg-accent-400/12 blur-3xl -z-10" />
+      <div className="absolute bottom-0 right-1/4 w-72 h-72 rounded-full bg-brand-400/12 blur-3xl -z-10" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 lg:px-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
-            Ce que disent nos <span className="gradient-text">Clients</span>
+          <div className="tag-pill mx-auto mb-4">Temoignages</div>
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-950 mb-4">
+            Ce que disent nos <span className="gradient-text">clients</span>
           </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto">
-            La confiance de nos clients est notre plus grande récompense.
-          </p>
+          <p className="text-slate-500 max-w-2xl mx-auto">La confiance de nos clients valide notre niveau d execution.</p>
         </motion.div>
 
-        {/* Carousel */}
         <div className="max-w-4xl mx-auto relative">
           <AnimatePresence initial={false} custom={direction} mode="wait">
-            <motion.div
+            <motion.article
               key={currentIndex}
               custom={direction}
               variants={variants}
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.2 }
-              }}
-              className="glass-strong p-8 md:p-12 rounded-3xl"
+              transition={{ x: { type: 'spring', stiffness: 270, damping: 30 }, opacity: { duration: 0.2 } }}
+              className="soft-card-strong p-8 md:p-10"
             >
-              {/* Quote icon */}
-              <div className="flex justify-center mb-6">
-                <div className="p-3 bg-brand-600/20 rounded-full">
-                  <Quote className="w-8 h-8 text-brand-400" />
-                </div>
+              <div className="w-12 h-12 rounded-full bg-brand-100 border border-brand-300/40 flex items-center justify-center mx-auto mb-5">
+                <Quote className="w-6 h-6 text-brand-600" />
               </div>
 
-              {/* Stars */}
-              <div className="flex justify-center gap-1 mb-6">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+              <div className="flex justify-center gap-1.5 mb-6">
+                {[...Array(5)].map((_, index) => (
+                  <Star key={index} className="w-4 h-4 fill-amber-400 text-amber-400" />
                 ))}
               </div>
 
-              {/* Content */}
-              <p className="text-slate-200 text-lg md:text-xl leading-relaxed text-center mb-8 italic">
-                "{testimonials[currentIndex].content}"
-              </p>
+              <p className="text-slate-300 text-lg md:text-xl leading-relaxed text-center mb-8">"{testimonials[currentIndex].content}"</p>
 
-              {/* Author */}
               <div className="flex items-center justify-center gap-4">
                 <img
                   src={testimonials[currentIndex].avatar}
                   alt={testimonials[currentIndex].name}
-                  className="w-16 h-16 rounded-full border-2 border-brand-500/50"
+                  className="w-14 h-14 rounded-full border-2 border-brand-300/45"
                 />
                 <div className="text-left">
-                  <h4 className="text-white font-semibold text-lg">
-                    {testimonials[currentIndex].name}
-                  </h4>
-                  <p className="text-slate-400 text-sm">
-                    {testimonials[currentIndex].role}
-                  </p>
+                  <h4 className="text-slate-950 font-semibold">{testimonials[currentIndex].name}</h4>
+                  <p className="text-sm text-slate-500">{testimonials[currentIndex].role}</p>
                 </div>
               </div>
-            </motion.div>
+            </motion.article>
           </AnimatePresence>
 
-          {/* Navigation buttons */}
           <button
             onClick={handlePrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-16 p-3 bg-slate-900/80 hover:bg-slate-800 rounded-full border border-slate-700 hover:border-brand-500 transition-all text-white"
-            aria-label="Previous testimonial"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 md:-translate-x-16 w-11 h-11 rounded-full bg-white border border-slate-800 text-slate-950 hover:border-brand-400 hover:text-brand-600 transition-colors shadow-soft"
+            aria-label="Precedent"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft className="w-5 h-5 mx-auto" />
           </button>
 
           <button
             onClick={handleNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-16 p-3 bg-slate-900/80 hover:bg-slate-800 rounded-full border border-slate-700 hover:border-brand-500 transition-all text-white"
-            aria-label="Next testimonial"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 md:translate-x-16 w-11 h-11 rounded-full bg-white border border-slate-800 text-slate-950 hover:border-brand-400 hover:text-brand-600 transition-colors shadow-soft"
+            aria-label="Suivant"
           >
-            <ChevronRight className="w-6 h-6" />
+            <ChevronRight className="w-5 h-5 mx-auto" />
           </button>
 
-          {/* Dots indicator */}
-          <div className="flex justify-center gap-2 mt-8">
+          <div className="flex justify-center gap-2 mt-7">
             {testimonials.map((_, index) => (
               <button
                 key={index}
@@ -177,12 +157,8 @@ const Testimonials: React.FC = () => {
                   setDirection(index > currentIndex ? 1 : -1);
                   setCurrentIndex(index);
                 }}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex 
-                    ? 'bg-brand-500 w-8' 
-                    : 'bg-slate-700 hover:bg-slate-600'
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
+                className={`h-2 rounded-full transition-all ${index === currentIndex ? 'w-7 bg-brand-500' : 'w-2 bg-slate-700 hover:bg-slate-600'}`}
+                aria-label={`Temoignage ${index + 1}`}
               />
             ))}
           </div>

@@ -1,111 +1,124 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
+import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { SectionId } from '../types';
-import { Mail, Phone, MapPin, Send, Linkedin, Twitter, Instagram } from 'lucide-react';
 
 const Contact: React.FC = () => {
   return (
-    <footer id={SectionId.CONTACT} className="bg-slate-950 relative overflow-hidden pt-24 pb-8">
-      {/* Footer background effects */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
-      
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
+    <footer id={SectionId.CONTACT} className="section-shell pt-24 pb-10 overflow-hidden">
+      <div className="absolute left-1/2 -translate-x-1/2 top-0 h-px w-full bg-gradient-to-r from-transparent via-slate-700/75 to-transparent" />
+      <div className="absolute -bottom-24 right-0 w-[26rem] h-[26rem] bg-accent-500/15 rounded-full blur-3xl -z-10" />
+
+      <div className="container mx-auto px-6 lg:px-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 mb-14">
           <div>
+            <div className="tag-pill mb-4">Contact</div>
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-display font-bold text-white mb-6 leading-tight"
+              className="text-4xl md:text-5xl font-display font-bold text-brand-600 leading-tight mb-5"
             >
-              Prêt à transformer{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-accent-400">
-                votre vision
-              </span>{' '}
-              ?
+              Votre prochaine croissance
+              <span className="gradient-text"> commence ici.</span>
             </motion.h2>
-            <p className="text-slate-400 text-lg mb-8 max-w-md">
-              Discutons de votre projet. Que ce soit pour une refonte complète, une stratégie digitale ou une application sur mesure au Togo et à l'international.
+
+            <p className="text-slate-500 text-lg leading-relaxed mb-8 max-w-md">
+              Un message suffit pour lancer un cadrage rapide et concret.
             </p>
 
-            <div className="space-y-6">
-              <a href="mailto:dunahcorporation@gmail.com" className="flex items-center gap-4 text-slate-300 hover:text-white transition-colors p-4 rounded-xl hover:bg-slate-900 border border-transparent hover:border-slate-800">
-                <div className="bg-brand-600/20 p-3 rounded-lg text-brand-400">
-                  <Mail className="w-6 h-6" />
-                </div>
-                <div>
-                  <div className="text-sm text-slate-500">Email</div>
-                  <div className="font-medium">dunahcorporation@gmail.com</div>
-                </div>
+            <div className="space-y-3">
+              <a
+                href="mailto:contact@d-codex.com"
+                className="soft-card p-4 flex items-center gap-4 hover:border-brand-400/55 transition-colors"
+              >
+                <span className="w-11 h-11 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center">
+                  <Mail className="w-5 h-5" />
+                </span>
+                <span>
+                  <span className="block text-xs uppercase tracking-wide text-slate-500">Email</span>
+                  <span className="text-brand-600 font-semibold">contact@d-codex.com</span>
+                </span>
               </a>
-              
-              <div className="flex items-center gap-4 text-slate-300 p-4 rounded-xl border border-transparent">
-                <div className="bg-brand-600/20 p-3 rounded-lg text-brand-400">
-                  <Phone className="w-6 h-6" />
-                </div>
-                <div>
-                  <div className="text-sm text-slate-500">Téléphone</div>
-                  <div className="font-medium">+228 91 77 45 63</div>
-                </div>
+
+              <div className="soft-card p-4 flex items-center gap-4">
+                <span className="w-11 h-11 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center">
+                  <Phone className="w-5 h-5" />
+                </span>
+                <span>
+                  <span className="block text-xs uppercase tracking-wide text-slate-500">Telephone</span>
+                  <span className="text-brand-600 font-semibold">+228 91 77 45 63</span>
+                </span>
               </div>
 
-              <div className="flex items-center gap-4 text-slate-300 p-4 rounded-xl border border-transparent">
-                <div className="bg-brand-600/20 p-3 rounded-lg text-brand-400">
-                  <MapPin className="w-6 h-6" />
-                </div>
-                <div>
-                  <div className="text-sm text-slate-500">Siège</div>
-                  <div className="font-medium">Lomé, Togo</div>
-                </div>
+              <div className="soft-card p-4 flex items-center gap-4">
+                <span className="w-11 h-11 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center">
+                  <MapPin className="w-5 h-5" />
+                </span>
+                <span>
+                  <span className="block text-xs uppercase tracking-wide text-slate-500">Localisation</span>
+                  <span className="text-brand-600 font-semibold">Lome, Togo</span>
+                </span>
               </div>
             </div>
           </div>
 
           <motion.form
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-2xl"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={(event) => event.preventDefault()}
+            className="soft-card-strong p-7 md:p-8"
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div className="space-y-2">
-                <label className="text-sm text-slate-400">Nom complet</label>
-                <input type="text" className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500 transition-colors" placeholder="John Doe" />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm text-slate-400">Entreprise</label>
-                <input type="text" className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500 transition-colors" placeholder="Votre société" />
-              </div>
-            </div>
-            
-            <div className="space-y-2 mb-6">
-              <label className="text-sm text-slate-400">Email professionnel</label>
-              <input type="email" className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500 transition-colors" placeholder="john@company.com" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <label className="text-sm text-slate-500 space-y-2 block">
+                <span>Nom</span>
+                <input
+                  type="text"
+                  placeholder="Votre nom"
+                  className="w-full rounded-xl bg-white border border-slate-800 px-4 py-3 text-brand-600 focus:outline-none focus:border-accent-500"
+                />
+              </label>
+
+              <label className="text-sm text-slate-500 space-y-2 block">
+                <span>Entreprise</span>
+                <input
+                  type="text"
+                  placeholder="Votre entreprise"
+                  className="w-full rounded-xl bg-white border border-slate-800 px-4 py-3 text-brand-600 focus:outline-none focus:border-accent-500"
+                />
+              </label>
             </div>
 
-            <div className="space-y-2 mb-8">
-              <label className="text-sm text-slate-400">Votre message</label>
-              <textarea rows={4} className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500 transition-colors resize-none" placeholder="Parlez-nous de votre projet..."></textarea>
-            </div>
+            <label className="text-sm text-slate-500 space-y-2 block mb-4">
+              <span>Email</span>
+              <input
+                type="email"
+                placeholder="vous@entreprise.com"
+                className="w-full rounded-xl bg-white border border-slate-800 px-4 py-3 text-brand-600 focus:outline-none focus:border-accent-500"
+              />
+            </label>
 
-            <button type="submit" className="w-full bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-500 hover:to-accent-500 text-white font-bold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group">
-              Envoyer le message <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <label className="text-sm text-slate-500 space-y-2 block mb-6">
+              <span>Brief</span>
+              <textarea
+                rows={4}
+                placeholder="Objectif, delai, budget cible"
+                className="w-full rounded-xl bg-white border border-slate-800 px-4 py-3 text-brand-600 resize-none focus:outline-none focus:border-accent-500"
+              />
+            </label>
+
+            <button type="submit" className="btn-primary w-full">
+              Envoyer <Send className="w-5 h-5" />
             </button>
           </motion.form>
         </div>
 
-        {/* Bottom Footer */}
-        <div className="border-t border-slate-900 pt-8 flex flex-col md:flex-row justify-center items-center gap-4">
-          <div className="text-slate-500 text-sm text-center">
-            © {new Date().getFullYear()} Dunah Corporation, Lomé, Togo. Tous droits réservés.
-          </div>
-          
-          <div className="flex items-center gap-6">
-            <a href="#" className="text-slate-500 hover:text-white transition-colors"><Linkedin className="w-5 h-5" /></a>
-            <a href="#" className="text-slate-500 hover:text-white transition-colors"><Twitter className="w-5 h-5" /></a>
-            <a href="#" className="text-slate-500 hover:text-white transition-colors"><Instagram className="w-5 h-5" /></a>
-          </div>
+        <div className="pt-7 border-t border-slate-800/80 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-slate-500 text-sm text-center md:text-left">
+            © {new Date().getFullYear()} D-Codex. Tous droits reserves.
+          </p>
+          <p className="text-xs text-slate-500 uppercase tracking-[0.14em]">Design . Code . Impact</p>
         </div>
       </div>
     </footer>

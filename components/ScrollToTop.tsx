@@ -7,11 +7,7 @@ const ScrollToTop: React.FC = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.scrollY > 500) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      setIsVisible(window.scrollY > 420);
     };
 
     window.addEventListener('scroll', toggleVisibility);
@@ -19,24 +15,21 @@ const ScrollToTop: React.FC = () => {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <AnimatePresence>
       {isVisible && (
         <motion.button
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.84 }}
           animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
+          exit={{ opacity: 0, scale: 0.84 }}
           onClick={scrollToTop}
-          className="fixed bottom-24 right-6 z-40 p-3 bg-slate-900 hover:bg-brand-600 text-white rounded-full border border-slate-700 hover:border-brand-500 transition-all duration-300 shadow-lg hover:shadow-brand-900/50"
-          aria-label="Scroll to top"
+          className="fixed bottom-8 right-6 z-40 w-12 h-12 rounded-full bg-white border border-slate-800 text-slate-950 hover:border-brand-400 hover:text-brand-600 transition-colors shadow-soft"
+          aria-label="Retour en haut"
         >
-          <ChevronUp className="w-6 h-6" />
+          <ChevronUp className="w-5 h-5 mx-auto" />
         </motion.button>
       )}
     </AnimatePresence>
